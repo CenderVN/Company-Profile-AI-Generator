@@ -93,3 +93,12 @@ This tool is intended for creating fictional training materials and educational 
 
 ## 🤝 Contributing
 Feel free to fork this project, open issues, or submit pull requests to improve the AI prompting or the PDF layout engine!
+## 📸 Preview
+
+### Application Interface
+<img width="956" height="831" alt="image" src="https://github.com/user-attachments/assets/fd9e69b9-a1b4-40d9-a311-3ac75ca5f2c1" />
+
+
+
+### Sample Output (PDF)
+<img width="1275" height="1650" alt="1_PDFsam_Texas_Intstruments-1" src="https://github.com/user-attachments/assets/e93644be-9565-4ec4-98dd-dd64010984b2" />
