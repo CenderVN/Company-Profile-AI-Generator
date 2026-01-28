@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile: ${name}</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+        }
+        
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 15mm;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 8rem;
+            color: rgba(200, 0, 0, 0.05);
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 0;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        header h1 { margin: 0; font-size: 14pt; text-transform: uppercase; letter-spacing: 1px; }
+        header h2 { margin: 5px 0; font-size: 24pt; font-weight: 800; }
+        header .sub { font-size: 9pt; color: #666; font-style: italic; }
+
+        /* Layout Grid */
+        .content-grid {
+            display: flex;
+            gap: 5%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Left Column */
+        .sidebar {
+            width: 35%;
+            font-size: 0.9rem;
+        }
+        
+        .logo-box {
+            width: 100%;
+            height: 150px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            overflow: hidden;
+        }
+        
+        .logo-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        
+        .summary-box h3 {
+            border-bottom: 1px solid #aaa;
+            padding-bottom: 5px;
+            font-size: 1rem;
+            margin-top: 0;
+            text-transform: uppercase;
+            color: #2c3e50;
+        }
+        
+        .summary-item { margin-bottom: 15px; }
+        .summary-label { font-weight: bold; display: block; font-size: 0.85rem; color: #444; margin-bottom: 2px; }
+        .summary-text { font-size: 0.85rem; line-height: 1.3; }
+
+        /* Right Column */
+        .main-info {
+            width: 60%;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .info-table td {
+            padding: 5px 0;
+            vertical-align: top;
+            line-height: 1.3;
+        }
+        
+        .label-col {
+            width: 130px;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 15px !important;
+            color: #2c3e50;
+        }
+        
+        /* Field Agent Notes Box */
+        .notes-box {
+            margin-top: 30px;
+            border: 1px solid #333;
+            padding: 15px;
+            background-color: #fffdf0;
+            font-size: 0.85rem;
+        }
+        .notes-box h4 { margin: 0 0 10px 0; text-transform: uppercase; font-size: 0.9rem; }
+        .notes-box ul { margin: 0; padding-left: 20px; }
+        .notes-box li { margin-bottom: 6px; }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 15mm;
+            left: 0;
+            right: 0;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            font-size: 8pt;
+            color: #777;
+            width: calc(100% - 30mm);
+            margin: 0 auto;
+        }
+        
+        .stamp {
+            margin-top: 25px;
+            border: 3px solid #d32f2f;
+            color: #d32f2f;
+            display: inline-block;
+            padding: 8px 20px;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            transform: rotate(-3deg);
+            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="watermark">MISSION — TRAINING ONLY</div>
+
+    <header>
+        <h1>The Oulu Daily <span style="font-weight:normal; font-size: 0.8em">| Intelligence Unit</span></h1>
+        <h2>TARGET PROFILE (PROP)</h2>
+        <div class="sub">This is a fictional document for training/educational use — NOT a real corporate record</div>
+    </header>
+
+    <div class="content-grid">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="logo-box">
+                <!-- Uses the dynamic filename variable injected by main.py -->
+                <img src="${logo_filename}" alt="Company Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'text-align:center; color:#999; font-family:sans-serif\'><b>NO LOGO ACQUIRED</b><br><small>Image not found</small></div>'">
+            </div>
+
+            <div class="summary-box">
+                <h3>Operational Summary</h3>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Operational Focus</span>
+                    <div class="summary-text">${operational_focus}</div>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Project History</span>
+                    <div class="summary-text">${project_history}</div>
+                </div>
+                
+                <div class="summary-item">
+                    <span class="summary-label">Hiring Status</span>
+                    <div class="summary-text">${hiring_status}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Main Info -->
+        <div class="main-info">
+            <table class="info-table">
+                <tr><td class="label-col">Entity Name:</td><td>${name}</td></tr>
+                <tr><td class="label-col">Alias(es):</td><td>${aliases}</td></tr>
+                <tr><td class="label-col">Founded:</td><td>${founded}</td></tr>
+                <tr><td class="label-col">Headquarters:</td><td>${headquarters}</td></tr>
+                <tr><td class="label-col">Primary Market:</td><td>${primary_market}</td></tr>
+                <tr><td class="label-col">Market Sector:</td><td>${market_sector}</td></tr>
+                <tr><td class="label-col">Key Tech:</td><td>${key_technologies}</td></tr>
+                <tr><td class="label-col">Local Office:</td><td>${local_office}</td></tr>
+                <tr><td class="label-col">Other Locs:</td><td>${other_locations}</td></tr>
+            </table>
+
+            <hr style="border:0; border-top:1px dashed #ccc; margin: 15px 0;">
+
+            <table class="info-table">
+                <tr><td class="label-col">HQ Address:</td><td>${last_known_address}</td></tr>
+                <tr><td class="label-col">Local Address:</td><td>${local_address}</td></tr>
+                <tr><td class="label-col">Case #:</td><td>${case_number}</td></tr>
+            </table>
+
+            <div class="notes-box">
+                <h4>Field Agent Notes (Prop)</h4>
+                <ul>
+                    <li><b>Level 1-3 (Entry Analysis):</b> Assess public-facing hiring data, application processes, and general engineering requirements.</li>
+                    <li><b>Level 4-6 (Tactical Insight):</b> Investigate specific contributions to industry regulations, decarbonization efforts, or supply chain logistics.</li>
+                    <li><b>Level 7-9 (Strategic Insight):</b> Analyze long-term expansion strategies, challenges in complex system integration, and R&D focus.</li>
+                    <li><b>Level 10 (Human Intelligence):</b> Utilize non-work topics (hobbies, culture) to establish rapport during direct engagement.</li>
+                </ul>
+            </div>
+            
+            <div style="text-align:right; margin-top: 20px;">
+                <div class="stamp">For Educational Use Only</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Generated automatically on ${timestamp} <br>
+        NOTICE: This document is fictional and for training/production use only. Do NOT use to represent a real company.
+    </footer>
+</div>
+
+</body>
+</html>
